@@ -1,0 +1,20 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light px-5">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#"><strong>Angular 2</strong></a>
+
+        <div class="">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+            <div *ngIf="isLogged">
+                <div class="d-flex">
+                    <button class="btn btn-success me-1 px-4" [routerLink]="['/login']">Login</button>
+                    <button class="btn btn-outline-success px-3" [routerLink]="['/register']">Register</button>
+                </div>
+            </div>
+            <div *ngIf="!isLogged">
+                <div class="d-flex">
+                    <button class="btn btn-outline-success me-1 px-4" (click)="logout()">Logout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
