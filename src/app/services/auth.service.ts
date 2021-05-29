@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { UserRegisterModel } from '../models/UserRegister.model';
+import { UserLoginModel } from '../models/UserLoginModel.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,14 @@ export class AuthService {
 
   register(newUser: UserRegisterModel): Observable<any>{
     return this.http.post<any>(`${this.URL}/register`, newUser);
+  }
+
+  login(user: UserLoginModel): Observable<any>{
+    return this.http.post<any>(`${this.URL}/login`, user);
+  }
+
+  profile(): Observable<any>{
+    return this.http.get<any>(`${this.URL}/auth/me`);
   }
 
 }
