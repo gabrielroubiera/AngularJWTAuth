@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -8,13 +9,18 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(private AuthService: AuthService) { }
+  userData: any;
+  constructor(private AuthService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-    this.AuthService.profile().subscribe(data => {
-      console.log(data);
+
+    let token_localStorage = localStorage.getItem('token');
+
+    this.AuthService.profile(token_localStorage).subscribe(data => {
+      this.userData = data.data;
+      console.log(this.userData)
     }, (err) => {
-      console.log(err.error);
+      this.router.navigateByUrl('login');
     })
   }
 
